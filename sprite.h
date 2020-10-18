@@ -16,7 +16,7 @@ public:
     ~sprite();
 
     void select(int x, int y);
-    void draw_selected_sprite(SDL_Surface *window_surface, SDL_Rect *position);
+    void draw_selected_sprite(SDL_Renderer *rndr, SDL_Rect *r);
     
 
 private:

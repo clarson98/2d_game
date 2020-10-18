@@ -9,6 +9,9 @@ class entity{
         entity(char const *path, SDL_Renderer* rndr, int x, int y);
         ~entity();
 
+        int getX();
+        int getY();
+
         sprite spr;
         int xPos;
         int yPos;

@@ -34,7 +34,12 @@ void sprite::select(int x, int y)
     rect.y = y * rect.h;
 }
 
-void sprite::draw_selected_sprite(SDL_Surface *surf, SDL_Rect *r)
+void sprite::draw_selected_sprite(SDL_Renderer *rndr, SDL_Rect *r)
 {
-    SDL_BlitSurface(img, &rect, surf, r);
+    	SDL_RenderClear(rndr);
+		//Perform flip if needed
+
+		SDL_RenderCopy(rndr, txtr, &rect, r);
+		
+		SDL_RenderPresent(rndr);
 }

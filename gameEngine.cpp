@@ -77,7 +77,10 @@ void gameEngine::my_SDL_init(){
 }
 
 void gameEngine::render(){
-	SDL_RenderClear(my_renderer);
+	int x = p.getX();
+	int y = p.getY();
+	SDL_Rect tmp = {x, y, 256, 256};
+	p.spr.draw_selected_sprite(my_renderer, &tmp);
 
 }
 
