@@ -29,7 +29,7 @@ class gameEngine{
     private:
         void my_SDL_init();
 		void render();
-		void handleUI();
+		void handleUI(SDL_Event);
 		void updateMechanics();
 
         //Screen dimension
@@ -41,6 +41,8 @@ class gameEngine{
         SDL_Event input;
 
 		player p;
+
+        bool gameOver = false;
 
 
 

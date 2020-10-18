@@ -10,8 +10,6 @@ class player : public entity{
         player(SDL_Renderer* rndr);
         ~player();
 
-
-
 };
 
 #endif
