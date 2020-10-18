@@ -2,7 +2,7 @@
 
 gameEngine::gameEngine(){
 	my_SDL_init();
-	player p = player(my_renderer);
+	player p(my_renderer);
 }
 
 gameEngine::~gameEngine(){
@@ -77,7 +77,7 @@ void gameEngine::my_SDL_init(){
 }
 
 void gameEngine::render(){
-
+	SDL_RenderClear(my_renderer);
 
 }
 
@@ -87,15 +87,37 @@ void gameEngine::updateMechanics(){
 
 void gameEngine::handleUI(SDL_Event input){
 	switch(input.type){
+		// X'd out of program, close
 		case SDL_QUIT:
 			gameOver = true;
 			break;
+		//Handle key presses
 		case SDL_KEYDOWN:
 			switch (input.key.keysym.sym) {
+				//Escape key hit, exit game
 				case SDLK_ESCAPE:
 					gameOver = true;
 					break;
-				
+				//W key hit, move up
+				case SDLK_w:
+					p.move(0);
+					break;
+				//A key hit, move left
+				case SDLK_a:
+					p.move(1);
+					break;
+				//S key hit, move down
+				case SDLK_s:
+					p.move(2);
+					break;
+				//D key hit, move right
+				case SDLK_d:
+					p.move(3);
+					break;
+				//Space bar hit, attack
+				case SDLK_SPACE:
+					p.attack();
+					break;
 			}
 	}
 }

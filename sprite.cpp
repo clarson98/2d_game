@@ -25,7 +25,7 @@ sprite::sprite(char const *path, SDL_Renderer *rndr){
 
 sprite::~sprite()
 {
-    SDL_FreeSurface(img);
+    //SDL_FreeSurface(img);
 }
 
 void sprite::select(int x, int y)
