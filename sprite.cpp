@@ -10,7 +10,7 @@ sprite::sprite(char const *path){
     img = IMG_Load(path);
 
     rect.x = 0;
-    rect.y = 0;
+    rect.y = 256;
     rect.w = img->w;
     rect.h = img->h / 2;
 
@@ -23,10 +23,15 @@ sprite::~sprite()
     SDL_FreeSurface(img);
 }
 
-void sprite::move(int x, int y)
+void sprite::walk()
 {
-    rect.x = x;
-    rect.y = y;
+    if(rect.y == 0){
+        rect.y = 256;
+    }
+    else{
+        rect.y = 0;
+    }
+    
 }
 
 void sprite::draw_selected_sprite(SDL_Renderer *rndr, SDL_Rect *r)

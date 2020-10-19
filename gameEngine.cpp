@@ -81,7 +81,12 @@ void gameEngine::render(){
 	
 	SDL_Texture* txtr = SDL_CreateTextureFromSurface(my_renderer, p.spr.img);
 	SDL_Rect dstRect = {p.getX(), p.getY(), p.spr.rect.w, p.spr.rect.h};
-	SDL_RenderCopy(my_renderer, txtr, &p.spr.rect, &dstRect);
+	if(p.getFace()){
+		SDL_RenderCopyEx(my_renderer, txtr, &p.spr.rect, &dstRect, 0, 0, SDL_FLIP_HORIZONTAL);
+	}
+	else{
+		SDL_RenderCopy(my_renderer, txtr, &p.spr.rect, &dstRect);
+	}
 	
 	SDL_RenderPresent(my_renderer);
 
@@ -106,18 +111,22 @@ void gameEngine::handleUI(SDL_Event input){
 					break;
 				//W key hit, move up
 				case SDLK_w:
+					p.spr.walk();
 					p.move(0);
 					break;
 				//A key hit, move left
 				case SDLK_a:
+					p.spr.walk();
 					p.move(1);
 					break;
 				//S key hit, move down
 				case SDLK_s:
+					p.spr.walk();
 					p.move(2);
 					break;
 				//D key hit, move right
 				case SDLK_d:
+					p.spr.walk();
 					p.move(3);
 					break;
 				//Space bar hit, attack

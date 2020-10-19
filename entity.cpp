@@ -25,12 +25,14 @@ void entity::move(int dir){
             yPos -= 2;
             break;
         case 1:
+            face = true;
             xPos -= 2;
             break;
         case 2:
             yPos += 2;
             break;
         case 3:
+            face = false;
             xPos += 2;
             break;
         default:
@@ -45,4 +47,8 @@ int entity::getX(){
 
 int entity::getY(){
     return yPos;
+}
+
+bool entity::getFace(){
+    return face;
 }

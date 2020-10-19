@@ -18,6 +18,10 @@ class entity{
 
         void attack();
         void move(int);
+        bool getFace();
+
+    private:
+        bool face = false;
 };
 
 #endif

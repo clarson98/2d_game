@@ -15,7 +15,7 @@ public:
     sprite(char const *path);
     ~sprite();
 
-    void move(int x, int y);
+    void walk();
     void draw_selected_sprite(SDL_Renderer *rndr, SDL_Rect *r);
     SDL_Surface *img;
     SDL_Rect rect;
