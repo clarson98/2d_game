@@ -19,13 +19,10 @@ void gameEngine::gameLoop(){
 	//Create rectangle to render onto
 
 
-	SDL_Rect dstRect = {10, 10, 256, 256};
+
 
 	//Vars for flipping and speed limiting
-	Uint32 start_time;
-	Uint32 s;
-	Uint32 duration;
-	bool flip = 0;
+
 	//Vars for flipping and speed limiting
 
 
@@ -36,16 +33,7 @@ void gameEngine::gameLoop(){
 			handleUI(input);
 		}
 		updateMechanics();
-		SDL_RenderClear(my_renderer);
-		//Perform flip if needed
-		//SDL_Surface* img = IMG_Load("Player.png");
-		p.spr.move(p.getX(), p.getY());
-		
-		SDL_Texture* txtr = SDL_CreateTextureFromSurface(my_renderer, p.spr.img);
-		
-		SDL_RenderCopy(my_renderer, txtr, &p.spr.rect, &dstRect);
-		
-		SDL_RenderPresent(my_renderer);
+		render();
 		/*start_time = SDL_GetTicks() / 250;
 		s = start_time % 2;
 		//rect = {0, s * 256, 256, 256};
@@ -86,10 +74,16 @@ void gameEngine::my_SDL_init(){
 }
 
 void gameEngine::render(){
-	int x = p.getX();
-	int y = p.getY();
-	SDL_Rect tmp = {0, 0, 256, 256};
-	p.spr.draw_selected_sprite(my_renderer, &tmp);
+	SDL_RenderClear(my_renderer);
+	//Perform flip if needed
+	//SDL_Surface* img = IMG_Load("Player.png");
+	//p.spr.move(p.getX(), p.getY());
+	
+	SDL_Texture* txtr = SDL_CreateTextureFromSurface(my_renderer, p.spr.img);
+	SDL_Rect dstRect = {p.getX(), p.getY(), p.spr.rect.w, p.spr.rect.h};
+	SDL_RenderCopy(my_renderer, txtr, &p.spr.rect, &dstRect);
+	
+	SDL_RenderPresent(my_renderer);
 
 }
 

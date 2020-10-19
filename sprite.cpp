@@ -11,8 +11,8 @@ sprite::sprite(char const *path){
 
     rect.x = 0;
     rect.y = 0;
-    rect.w = 256;
-    rect.h = 256;
+    rect.w = img->w;
+    rect.h = img->h / 2;
 
     //rect.w = img->w / column;
     //rect.h = img->h / row;
