@@ -39,7 +39,10 @@ void gameEngine::gameLoop(){
 		SDL_RenderClear(my_renderer);
 		//Perform flip if needed
 		//SDL_Surface* img = IMG_Load("Player.png");
+		p.spr.move(p.getX(), p.getY());
+		
 		SDL_Texture* txtr = SDL_CreateTextureFromSurface(my_renderer, p.spr.img);
+		
 		SDL_RenderCopy(my_renderer, txtr, &p.spr.rect, &dstRect);
 		
 		SDL_RenderPresent(my_renderer);

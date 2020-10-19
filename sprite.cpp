@@ -23,10 +23,10 @@ sprite::~sprite()
     SDL_FreeSurface(img);
 }
 
-void sprite::select(int x, int y)
+void sprite::move(int x, int y)
 {
-    rect.x = x * rect.w;
-    rect.y = y * rect.h;
+    rect.x = x;
+    rect.y = y;
 }
 
 void sprite::draw_selected_sprite(SDL_Renderer *rndr, SDL_Rect *r)

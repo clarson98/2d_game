@@ -25,13 +25,13 @@ void entity::move(int dir){
             yPos += 2;
             break;
         case 1:
-            xPos -= 2;
+            xPos += 2;
             break;
         case 2:
             yPos -= 2;
             break;
         case 3:
-            xPos += 2;
+            xPos -= 2;
             break;
         default:
             std::cout << "invalid direction!" << std::endl;
