@@ -6,8 +6,8 @@
 class player : public entity{
 
     public:
+        //player();
         player();
-        player(SDL_Renderer* rndr);
         ~player();
 
 };

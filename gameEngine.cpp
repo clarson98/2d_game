@@ -2,7 +2,7 @@
 
 gameEngine::gameEngine(){
 	my_SDL_init();
-	player p(my_renderer);
+	player p;
 }
 
 gameEngine::~gameEngine(){
@@ -36,7 +36,13 @@ void gameEngine::gameLoop(){
 			handleUI(input);
 		}
 		updateMechanics();
-		render();
+		SDL_RenderClear(my_renderer);
+		//Perform flip if needed
+		//SDL_Surface* img = IMG_Load("Player.png");
+		SDL_Texture* txtr = SDL_CreateTextureFromSurface(my_renderer, p.spr.img);
+		SDL_RenderCopy(my_renderer, txtr, &p.spr.rect, &dstRect);
+		
+		SDL_RenderPresent(my_renderer);
 		/*start_time = SDL_GetTicks() / 250;
 		s = start_time % 2;
 		//rect = {0, s * 256, 256, 256};
@@ -79,7 +85,7 @@ void gameEngine::my_SDL_init(){
 void gameEngine::render(){
 	int x = p.getX();
 	int y = p.getY();
-	SDL_Rect tmp = {x, y, 256, 256};
+	SDL_Rect tmp = {0, 0, 256, 256};
 	p.spr.draw_selected_sprite(my_renderer, &tmp);
 
 }

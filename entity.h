@@ -5,8 +5,8 @@
 
 class entity{
     public:
-        entity();
-        entity(char const *path, SDL_Renderer* rndr, int x, int y);
+        //entity();
+        entity(char const *path, int x, int y);
         ~entity();
 
         int getX();

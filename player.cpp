@@ -1,12 +1,12 @@
 #include "player.h" 
 
 // Default constructor
-player::player(){
+/*player::player(){
     
 }
-
+*/
 // Parameter constructor
-player::player(SDL_Renderer* rndr) : entity{"Player.png", rndr, 0, 0} {
+player::player() : entity{"Player.png", 0, 0} {
 
 }
 

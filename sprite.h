@@ -12,17 +12,17 @@ class sprite
 {
 public:
     sprite();
-    sprite(char const *path, SDL_Renderer *rndr);
+    sprite(char const *path);
     ~sprite();
 
     void select(int x, int y);
     void draw_selected_sprite(SDL_Renderer *rndr, SDL_Rect *r);
-    
-
-private:
     SDL_Surface *img;
     SDL_Rect rect;
-    SDL_Texture* txtr;
+    //SDL_Texture* txtr;
+
+private:
+
     
 };
 

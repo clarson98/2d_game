@@ -1,11 +1,11 @@
 #include "entity.h"
 
-entity::entity() : spr{"", NULL} {
+/*entity::entity() : spr{""} {
     xPos = 0;
     yPos = 0;
-}
+}*/
 
-entity::entity(char const *path, SDL_Renderer* rndr, int x, int y) : spr{path, rndr}{
+entity::entity(char const *path, int x, int y) : spr{path}{
     
     xPos = x;
     yPos = y;

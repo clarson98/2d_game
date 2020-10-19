@@ -24,6 +24,7 @@ class gameEngine{
         ~gameEngine();
 
         void gameLoop();
+        SDL_Renderer* my_renderer = NULL;
 
 
     private:
@@ -37,12 +38,14 @@ class gameEngine{
         const int SCREEN_HEIGHT = 480;
 
         SDL_Window* my_window = NULL;
-        SDL_Renderer* my_renderer = NULL;
+
         SDL_Event input;
 
 		player p;
 
         bool gameOver = false;
+
+        friend class sprite;
 
 
 

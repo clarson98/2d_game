@@ -2,17 +2,12 @@
 
 sprite::sprite(){
     img = NULL;
-    txtr = NULL;
     rect = {0, 0, 0, 0};
 }
 
-sprite::sprite(char const *path, SDL_Renderer *rndr){
-    txtr = NULL;
+sprite::sprite(char const *path){
+
     img = IMG_Load(path);
-
-    txtr = SDL_CreateTextureFromSurface(rndr, img);
-
-    SDL_FreeSurface(img);
 
     rect.x = 0;
     rect.y = 0;
@@ -25,7 +20,7 @@ sprite::sprite(char const *path, SDL_Renderer *rndr){
 
 sprite::~sprite()
 {
-    //SDL_FreeSurface(img);
+    SDL_FreeSurface(img);
 }
 
 void sprite::select(int x, int y)
@@ -36,10 +31,10 @@ void sprite::select(int x, int y)
 
 void sprite::draw_selected_sprite(SDL_Renderer *rndr, SDL_Rect *r)
 {
-    	SDL_RenderClear(rndr);
-		//Perform flip if needed
+    SDL_RenderClear(rndr);
+    //Perform flip if needed
 
-		SDL_RenderCopy(rndr, txtr, &rect, r);
-		
-		SDL_RenderPresent(rndr);
+    SDL_RenderCopy(rndr, NULL, &rect, r);
+    
+    SDL_RenderPresent(rndr);
 }
