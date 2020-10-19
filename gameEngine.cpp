@@ -3,6 +3,7 @@
 gameEngine::gameEngine(){
 	my_SDL_init();
 	player p;
+	timer = SDL_GetTicks();
 }
 
 gameEngine::~gameEngine(){
@@ -16,24 +17,17 @@ gameEngine::~gameEngine(){
 
 void gameEngine::gameLoop(){
 
-	//Create rectangle to render onto
-
-
-
-
-	//Vars for flipping and speed limiting
-
-	//Vars for flipping and speed limiting
-
-
-
-
 	while(!gameOver){
 		if(SDL_PollEvent(&input)){
 			handleUI(input);
 		}
 		updateMechanics();
 		render();
+			// Limit speed
+		/*Uint32 duration = SDL_GetTicks() - timer;
+		if (duration < 5) {
+			SDL_Delay(5 - duration);
+		}
 		/*start_time = SDL_GetTicks() / 250;
 		s = start_time % 2;
 		//rect = {0, s * 256, 256, 256};
@@ -109,6 +103,8 @@ void gameEngine::handleUI(SDL_Event input){
 				case SDLK_ESCAPE:
 					gameOver = true;
 					break;
+
+				//Walking state
 				//W key hit, move up
 				case SDLK_w:
 					p.spr.walk();
@@ -132,6 +128,9 @@ void gameEngine::handleUI(SDL_Event input){
 				//Space bar hit, attack
 				case SDLK_SPACE:
 					p.attack();
+					break;
+				//Default idle state
+				default:
 					break;
 			}
 	}

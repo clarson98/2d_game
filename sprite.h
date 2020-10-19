@@ -16,7 +16,7 @@ public:
     ~sprite();
 
     void walk();
-    void draw_selected_sprite(SDL_Renderer *rndr, SDL_Rect *r);
+
     SDL_Surface *img;
     SDL_Rect rect;
     //SDL_Texture* txtr;

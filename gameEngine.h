@@ -44,8 +44,7 @@ class gameEngine{
 		player p;
 
         bool gameOver = false;
-
-        friend class sprite;
+        Uint32 timer;
 
 
 
