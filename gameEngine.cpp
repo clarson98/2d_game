@@ -22,13 +22,13 @@ void gameEngine::gameLoop(){
 		if(SDL_PollEvent(&input)){
 			handleUI(input);
 		}
-		//else{
-		//	p.spr.idle();
-		//}
+		else{
+			p.sprDefault();
+		}
 		updateMechanics();
 		render();
 			// Limit speed
-		/*Uint32 duration = SDL_GetTicks() - timer;
+		Uint32 duration = SDL_GetTicks() - timer;
 		if (duration < 60) {
 			SDL_Delay(60 - duration);
 		}

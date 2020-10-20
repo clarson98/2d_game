@@ -52,3 +52,8 @@ int entity::getY(){
 bool entity::getFace(){
     return face;
 }
+
+void entity::sprDefault(){
+    spr.rect.x = 0;
+    spr.rect.y = 0;
+}
