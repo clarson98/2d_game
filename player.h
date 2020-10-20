@@ -10,6 +10,9 @@ class player : public entity{
         player();
         ~player();
 
+        void walk();
+        void idle();
+
 };
 
 #endif

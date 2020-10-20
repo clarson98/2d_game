@@ -22,13 +22,13 @@ void gameEngine::gameLoop(){
 		if(SDL_PollEvent(&input)){
 			handleUI(input);
 		}
-		else{
-			p.spr.idle();
-		}
+		//else{
+		//	p.spr.idle();
+		//}
 		updateMechanics();
 		render();
 			// Limit speed
-		Uint32 duration = SDL_GetTicks() - timer;
+		/*Uint32 duration = SDL_GetTicks() - timer;
 		if (duration < 60) {
 			SDL_Delay(60 - duration);
 		}
@@ -111,31 +111,27 @@ void gameEngine::handleUI(SDL_Event input){
 				//Walking state
 				//W key hit, move up
 				case SDLK_w:
-					p.spr.walk();
+					p.walk();
 					p.move(0);
 					break;
 				//A key hit, move left
 				case SDLK_a:
-					p.spr.walk();
+					p.walk();
 					p.move(1);
 					break;
 				//S key hit, move down
 				case SDLK_s:
-					p.spr.walk();
+					p.walk();
 					p.move(2);
 					break;
 				//D key hit, move right
 				case SDLK_d:
-					p.spr.walk();
+					p.walk();
 					p.move(3);
 					break;
 				//Space bar hit, attack
 				case SDLK_SPACE:
-					p.attack();
-					break;
-				//Default idle state
-				default:
-					p.spr.idle();
+					p.idle();
 					break;
 			}
 	}

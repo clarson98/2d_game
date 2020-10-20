@@ -15,12 +15,10 @@ public:
     sprite(char const *path);
     ~sprite();
 
-    void walk();
-    void idle();
+
 
     SDL_Surface *img;
     SDL_Rect rect;
-    //SDL_Texture* txtr;
 
 private:
 
