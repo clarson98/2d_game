@@ -26,7 +26,7 @@ public:
     SDL_Rect rect;
 
 private:
-
+    static const int res = 256;
     
 };
 

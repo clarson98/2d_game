@@ -26,7 +26,7 @@ void gameEngine::gameLoop(){
 	while(!gameOver){
 		//Update timer
 		timer = SDL_GetTicks();
-		//Handle user innput
+		//Handle user input
 		if(SDL_PollEvent(&input)){
 			handleUI(input);
 		}
@@ -103,7 +103,6 @@ void gameEngine::handleUI(SDL_Event input){
 				case SDLK_ESCAPE:
 					gameOver = true;
 					break;
-
 				//Walking state
 				//W key hit, move up
 				case SDLK_w:

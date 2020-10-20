@@ -8,13 +8,12 @@ sprite::sprite(){
 
 //Load the spritesheet and divide it into equal parts for each sprite
 sprite::sprite(char const *path){
-
     img = IMG_Load(path);
 
     rect.x = 0;
     rect.y = 0;
-    rect.w = img->w / 4;
-    rect.h = img->h / 4;
+    rect.w = img->w / (img->w / res);
+    rect.h = img->h / (img->h / res);
 }
 
 //Sprite destructor. Frees memory of surface
