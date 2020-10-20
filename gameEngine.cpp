@@ -27,11 +27,7 @@ void gameEngine::gameLoop(){
 		}
 		updateMechanics();
 		render();
-			// Limit speed
-		Uint32 duration = SDL_GetTicks() - timer;
-		if (duration < 60) {
-			SDL_Delay(60 - duration);
-		}
+
 		/*start_time = SDL_GetTicks() / 250;
 		s = start_time % 2;
 		//rect = {0, s * 256, 256, 256};
@@ -73,19 +69,22 @@ void gameEngine::my_SDL_init(){
 
 void gameEngine::render(){
 	SDL_RenderClear(my_renderer);
-	//Perform flip if needed
-	//SDL_Surface* img = IMG_Load("Player.png");
-	//p.spr.move(p.getX(), p.getY());
 	
 	SDL_Texture* txtr = SDL_CreateTextureFromSurface(my_renderer, p.spr.img);
 	SDL_Rect dstRect = {p.getX(), p.getY(), p.spr.rect.w, p.spr.rect.h};
+	//If facing left, flip the render
 	if(p.getFace()){
 		SDL_RenderCopyEx(my_renderer, txtr, &p.spr.rect, &dstRect, 0, 0, SDL_FLIP_HORIZONTAL);
 	}
+	//Otherwise, render normally
 	else{
 		SDL_RenderCopy(my_renderer, txtr, &p.spr.rect, &dstRect);
 	}
-	
+	// Limit speed
+	Uint32 duration = SDL_GetTicks() - timer;
+	if (duration < 1000 / 60) {
+		SDL_Delay(1000 / 60 - duration);
+	}
 	SDL_RenderPresent(my_renderer);
 
 }
