@@ -12,8 +12,8 @@ sprite::sprite(char const *path){
 
     rect.x = 0;
     rect.y = 0;
-    rect.w = img->w;
-    rect.h = img->h / 2;
+    rect.w = img->w / 2;
+    rect.h = img->h / 4;
 
     //rect.w = img->w / column;
     //rect.h = img->h / row;
@@ -26,11 +26,22 @@ sprite::~sprite()
 
 void sprite::walk()
 {
-    if(rect.y == 0){
-        rect.y = 256;
+    rect.x = 0;
+    if(rect.y < 768){
+        rect.y += 256;
     }
     else{
         rect.y = 0;
     }
     
+}
+
+void sprite::idle(){
+    rect.x = 256;
+    if(rect.y < 768){
+        rect.y += 256;
+    }
+    else{
+        rect.y = 0;
+    }
 }

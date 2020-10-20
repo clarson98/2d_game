@@ -16,6 +16,7 @@ public:
     ~sprite();
 
     void walk();
+    void idle();
 
     SDL_Surface *img;
     SDL_Rect rect;

@@ -18,15 +18,19 @@ gameEngine::~gameEngine(){
 void gameEngine::gameLoop(){
 
 	while(!gameOver){
+		timer = SDL_GetTicks();
 		if(SDL_PollEvent(&input)){
 			handleUI(input);
+		}
+		else{
+			p.spr.idle();
 		}
 		updateMechanics();
 		render();
 			// Limit speed
-		/*Uint32 duration = SDL_GetTicks() - timer;
-		if (duration < 5) {
-			SDL_Delay(5 - duration);
+		Uint32 duration = SDL_GetTicks() - timer;
+		if (duration < 60) {
+			SDL_Delay(60 - duration);
 		}
 		/*start_time = SDL_GetTicks() / 250;
 		s = start_time % 2;
@@ -131,6 +135,7 @@ void gameEngine::handleUI(SDL_Event input){
 					break;
 				//Default idle state
 				default:
+					p.spr.idle();
 					break;
 			}
 	}
