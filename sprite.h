@@ -1,3 +1,8 @@
+/* Sprite class. Contains the actual spritesheet to draw from as well as the current part
+ * of the spritesheet being rendered.
+ * 
+*/
+
 #ifndef SPRITE_H
 #define SPRITE_H
 

@@ -1,3 +1,6 @@
+/* Game engine class. Runs the game with the main loop.
+*/
+
 #ifndef GAMEENGINE_H
 #define GAMEENGINE_H
 

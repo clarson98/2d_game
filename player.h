@@ -1,3 +1,7 @@
+/* Player class. In the future, will contain all data and functions unique to the player
+ * Currently holds a few animations
+ */
+
 #ifndef PLAYER_H
 #define PLAYER_H
 
@@ -6,7 +10,6 @@
 class player : public entity{
 
     public:
-        //player();
         player();
         ~player();
 
@@ -14,7 +17,6 @@ class player : public entity{
         void idle();
         void walkUp();
         void walkDown();
-
 };
 
 #endif

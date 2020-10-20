@@ -1,11 +1,12 @@
 #include "sprite.h"
 
+//Default constructor, initializes null values
 sprite::sprite(){
     img = NULL;
     rect = {0, 0, 0, 0};
 }
 
-//Possible to-do: return array of sprites??? Or make entity classes contain array of sprites?
+//Load the spritesheet and divide it into equal parts for each sprite
 sprite::sprite(char const *path){
 
     img = IMG_Load(path);
@@ -14,11 +15,9 @@ sprite::sprite(char const *path){
     rect.y = 0;
     rect.w = img->w / 4;
     rect.h = img->h / 4;
-
-    //rect.w = img->w / column;
-    //rect.h = img->h / row;
 }
 
+//Sprite destructor. Frees memory of surface
 sprite::~sprite()
 {
     SDL_FreeSurface(img);

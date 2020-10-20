@@ -1,3 +1,7 @@
+/* Entity parent class. All movable characters will be children of this class.
+ * Contains functions and data that all entities will have in common
+ */ 
+
 #ifndef ENTITY_H
 #define ENTITY_H
 

@@ -1,11 +1,16 @@
 #include "gameEngine.h"
 
+// Default constructor for game engine
 gameEngine::gameEngine(){
+	//Initialize SDL
 	my_SDL_init();
+	//Create player
 	player p;
+	//Set timer
 	timer = SDL_GetTicks();
 }
 
+//Destructor. Destroys SDL things
 gameEngine::~gameEngine(){
 
   SDL_DestroyRenderer(my_renderer);
@@ -15,40 +20,29 @@ gameEngine::~gameEngine(){
   SDL_Quit();
 }
 
+// Primary game loop
 void gameEngine::gameLoop(){
 
 	while(!gameOver){
+		//Update timer
 		timer = SDL_GetTicks();
+		//Handle user innput
 		if(SDL_PollEvent(&input)){
 			handleUI(input);
 		}
+		//If no input, reset sprite to default
 		else{
 			p.sprDefault();
 		}
+		//Update other mechanics
 		updateMechanics();
+		//Display everything
 		render();
 
-		/*start_time = SDL_GetTicks() / 250;
-		s = start_time % 2;
-		//rect = {0, s * 256, 256, 256};
-
-		SDL_RenderClear(my_renderer);
-		//Perform flip if needed
-
-		//SDL_RenderCopy(my_renderer, my_texture, &rect, &dstRect);
-		
-		SDL_RenderPresent(my_renderer);
-
-		// Limit speed
-		duration = SDL_GetTicks() - start_time;
-		if (duration < 5) {
-			SDL_Delay(5 - duration);
-		}*/
-		//p.spr.select(1, 1);
-		//p.spr.draw_selected_sprite(temp, &rect);
 	}
 }
 
+// Initializes renderer and window
 void gameEngine::my_SDL_init(){
 
   if (SDL_Init(SDL_INIT_EVERYTHING) != 0) { 
@@ -67,9 +61,12 @@ void gameEngine::my_SDL_init(){
 
 }
 
+// Displays everything in the window
 void gameEngine::render(){
+	//Clear the renderer
 	SDL_RenderClear(my_renderer);
 	
+	//Create texture from sprite surface, and create the rect to render onto
 	SDL_Texture* txtr = SDL_CreateTextureFromSurface(my_renderer, p.spr.img);
 	SDL_Rect dstRect = {p.getX(), p.getY(), p.spr.rect.w, p.spr.rect.h};
 	//If facing left, flip the render
@@ -128,35 +125,10 @@ void gameEngine::handleUI(SDL_Event input){
 					p.walkSide();
 					p.move(3);
 					break;
-				//Space bar hit, attack
+				//Space bar hit, fly animation
 				case SDLK_SPACE:
 					p.idle();
 					break;
 			}
 	}
 }
-
-/*
-  
-
-
-  SDL_Texture* my_texture = NULL;
-  SDL_Surface* temp = IMG_Load("Circle_boi.png");
-
-  my_texture = SDL_CreateTextureFromSurface(my_renderer, temp);
-
-  SDL_FreeSurface(temp);
-
-  //Create rectangle to render onto
-  SDL_Rect rect;
-  rect.x = 0;
-  rect.y = 120;
-  rect.w = 226;
-  rect.h = 169;
-  
-  //Vars for flipping and speed limiting
-  Uint32 start_time;
-  Uint32 duration;
-  bool flip = 0;
-
-*/
