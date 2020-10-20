@@ -111,22 +111,22 @@ void gameEngine::handleUI(SDL_Event input){
 				//Walking state
 				//W key hit, move up
 				case SDLK_w:
-					p.walk();
+					p.walkUp();
 					p.move(0);
 					break;
 				//A key hit, move left
 				case SDLK_a:
-					p.walk();
+					p.walkSide();
 					p.move(1);
 					break;
 				//S key hit, move down
 				case SDLK_s:
-					p.walk();
+					p.walkDown();
 					p.move(2);
 					break;
 				//D key hit, move right
 				case SDLK_d:
-					p.walk();
+					p.walkSide();
 					p.move(3);
 					break;
 				//Space bar hit, attack

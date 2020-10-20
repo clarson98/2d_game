@@ -22,18 +22,18 @@ void entity::attack(){
 void entity::move(int dir){
     switch (dir){
         case 0:
-            yPos -= 2;
+            yPos -= 4;
             break;
         case 1:
             face = true;
-            xPos -= 2;
+            xPos -= 4;
             break;
         case 2:
-            yPos += 2;
+            yPos += 4;
             break;
         case 3:
             face = false;
-            xPos += 2;
+            xPos += 4;
             break;
         default:
             std::cout << "invalid direction!" << std::endl;

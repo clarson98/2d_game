@@ -10,8 +10,10 @@ class player : public entity{
         player();
         ~player();
 
-        void walk();
+        void walkSide();
         void idle();
+        void walkUp();
+        void walkDown();
 
 };
 

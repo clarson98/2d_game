@@ -15,7 +15,7 @@ player::~player(){
     
 }
 
-void player::walk()
+void player::walkSide()
 {
     spr.rect.x = 512;
     if(spr.rect.y < 768){
@@ -37,3 +37,24 @@ void player::idle(){
     }
 }
 
+void player::walkUp(){
+    spr.rect.x = 256;
+    if(spr.rect.y < 768){
+        spr.rect.y += 256;
+    }
+    else{
+        spr.rect.y = 0;
+    }
+    
+}
+
+void player::walkDown(){
+    spr.rect.x = 0;
+    if(spr.rect.y < 768){
+        spr.rect.y += 256;
+    }
+    else{
+        spr.rect.y = 0;
+    }
+    
+}
