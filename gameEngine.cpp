@@ -32,9 +32,9 @@ void gameEngine::gameLoop(){
 		}
 		//If no input, reset sprite to default
 		else{
-			p.sprDefault();
+			p.setState(4);
 		}
-		//Update other mechanics
+		//Update mechanics
 		updateMechanics();
 		//Display everything
 		render();
@@ -86,10 +86,12 @@ void gameEngine::render(){
 
 }
 
+//Currently, just moves the player and calls animation based on state
 void gameEngine::updateMechanics(){
-
+	p.act();
 }
 
+//Handle keyboard input from user
 void gameEngine::handleUI(SDL_Event input){
 	switch(input.type){
 		// X'd out of program, close
@@ -106,27 +108,25 @@ void gameEngine::handleUI(SDL_Event input){
 				//Walking state
 				//W key hit, move up
 				case SDLK_w:
-					p.walkUp();
-					p.move(0);
+					p.setState(1);
 					break;
 				//A key hit, move left
 				case SDLK_a:
-					p.walkSide();
-					p.move(1);
+					p.setState(2);
+					p.setFace(true);
 					break;
 				//S key hit, move down
 				case SDLK_s:
-					p.walkDown();
-					p.move(2);
+					p.setState(0);
 					break;
 				//D key hit, move right
 				case SDLK_d:
-					p.walkSide();
-					p.move(3);
+					p.setState(2);
+					p.setFace(false);
 					break;
 				//Space bar hit, fly animation
 				case SDLK_SPACE:
-					p.idle();
+					p.setState(3);
 					break;
 			}
 	}

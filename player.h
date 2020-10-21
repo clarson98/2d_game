@@ -13,10 +13,13 @@ class player : public entity{
         player();
         ~player();
 
-        void walkSide();
-        void idle();
-        void walkUp();
-        void walkDown();
+        void setState(int s);
+        void act();
+
+        enum state_t {WALKING_DOWN, WALKING_UP, WALKING_SIDE, FLAP, IDLE};
+
+    private:
+        state_t state;
 };
 
 #endif

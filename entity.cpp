@@ -55,6 +55,10 @@ bool entity::getFace(){
     return face;
 }
 
+void entity::setFace(bool f){
+    face = f;
+}
+
 //Set the sprite to the default
 void entity::sprDefault(){
     spr.rect.x = 0;

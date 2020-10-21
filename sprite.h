@@ -20,6 +20,8 @@ public:
     sprite(char const *path);
     ~sprite();
 
+    void anim(int s);
+
 
 
     SDL_Surface *img;

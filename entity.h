@@ -23,6 +23,7 @@ class entity{
         void attack();
         void move(int);
         bool getFace();
+        void setFace(bool f);
         void sprDefault();
 
     private:

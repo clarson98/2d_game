@@ -22,4 +22,12 @@ sprite::~sprite()
     SDL_FreeSurface(img);
 }
 
-
+void sprite::anim(int s){
+    rect.x = s * 256;
+    if(rect.y < 768){
+        rect.y += 256;
+    }
+    else{
+        rect.y = 0;
+    }
+}

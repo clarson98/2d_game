@@ -2,7 +2,7 @@
 
 // Default constructor for player, uses player sprite and set position to top left of window
 player::player() : entity{"Player.png", 0, 0} {
-
+    setState(4);
 }
 
 // Destructor
@@ -10,46 +10,38 @@ player::~player(){
     
 }
 
-//Walk horizontally
-void player::walkSide(){
-    spr.rect.x = 512;
-    if(spr.rect.y < 768){
-        spr.rect.y += 256;
-    }
-    else{
-        spr.rect.y = 0;
-    }
+// Sets what the player is currently doing
+void player::setState(int s){
+    state = static_cast<state_t> (s);
 }
 
-//Flap wings animation
-void player::idle(){
-    spr.rect.x = 768;
-    if(spr.rect.y < 768){
-        spr.rect.y += 256;
+// Update position and sprite based on state variable
+void player::act(){
+    // Move the sprite
+    switch(state){
+        case WALKING_DOWN:
+            yPos += 4;
+            break;
+        case WALKING_SIDE:
+            if(getFace()){
+                xPos -= 4;
+            }
+            else{
+                xPos += 4;
+            }
+            break;
+        case WALKING_UP:
+            yPos -= 4;
+            break;
+        default:
+            break;
     }
+    // If there is no input, change the sprite to default
+    if(state == static_cast<state_t> (4)){
+        sprDefault();
+    }
+    // Otherwise, animate the sprite based on the state
     else{
-        spr.rect.y = 0;
-    }
-}
-
-//Walk upwards
-void player::walkUp(){
-    spr.rect.x = 256;
-    if(spr.rect.y < 768){
-        spr.rect.y += 256;
-    }
-    else{
-        spr.rect.y = 0;
-    } 
-}
-
-//Walk downwards
-void player::walkDown(){
-    spr.rect.x = 0;
-    if(spr.rect.y < 768){
-        spr.rect.y += 256;
-    }
-    else{
-        spr.rect.y = 0;
+        spr.anim(state);
     }
 }
