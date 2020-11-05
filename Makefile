@@ -7,10 +7,10 @@ CC = g++
 CFLAGS = `sdl2-config --libs --cflags` -ggdb3 -O0 -Wall -lSDL2_image -lm -std=c++11
 
 # add header files here
-HDRS = sprite.h player.h entity.h gameEngine.h 
+HDRS = sprite.h player.h entity.h gameEngine.h particle.h emitter.h
 
 # add source files here
-SRCS = main.cpp sprite.cpp player.cpp entity.cpp gameEngine.cpp 
+SRCS = main.cpp sprite.cpp player.cpp entity.cpp gameEngine.cpp particle.cpp emitter.cpp
 
 # generate names of object files
 OBJS = $(SRCS:.cpp=.o)
