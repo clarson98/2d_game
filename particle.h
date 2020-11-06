@@ -12,6 +12,8 @@ class particle{
         void update();
         void draw(SDL_Renderer* ren);
 
+        int getLife();
+
     private:
         int x, y;
         double vx, vy;

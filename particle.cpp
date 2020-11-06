@@ -21,6 +21,10 @@ particle::particle(int x, int y, double vx, double vy, int lifetime,  int w, int
     }
 }
 
+particle::~particle(){
+    
+}
+
 void particle::update(){
     x += vx;
     y += vy;
@@ -28,5 +32,13 @@ void particle::update(){
 }
 
 void particle::draw(SDL_Renderer* ren){
+    //Create texture from sprite surface, and create the rect to render onto
+	SDL_Texture* txtr = SDL_CreateTextureFromSurface(ren, img);
+	SDL_Rect dstRect = {x, y, w, h};
+	//render
+	SDL_RenderCopy(ren, txtr, &rect, &dstRect);
+}
 
+int particle::getLife(){
+    return lifetime;
 }
