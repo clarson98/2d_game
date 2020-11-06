@@ -17,14 +17,19 @@ class entity{
         int getY();
 
         sprite spr;
-        int xPos;
-        int yPos;
+
 
         void attack();
         void move(int);
         bool getFace();
         void setFace(bool f);
         void sprDefault();
+
+        void virtual draw(SDL_Renderer* ren);
+
+    protected:
+        int xPos;
+        int yPos;
 
     private:
         bool face = false;

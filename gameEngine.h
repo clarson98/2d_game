@@ -10,6 +10,7 @@
 #include <SDL.h> 
 #include <iostream>
 #include <string>
+#include <vector>
 
 #include <SDL.h> 
 #include <SDL_image.h> 
@@ -17,6 +18,9 @@
 #include "entity.h"
 #include "player.h"
 #include "sprite.h"
+#include "idleObject.h"
+#include "particle.h"
+#include "emitter.h"
 
 using namespace std;
 
@@ -45,6 +49,7 @@ class gameEngine{
         SDL_Event input;
 
 		player p;
+        vector<idleObject> objs;
 
         bool gameOver = false;
         Uint32 timer;

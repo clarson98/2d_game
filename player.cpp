@@ -16,6 +16,10 @@ void player::setState(int s){
     state = static_cast<state_t> (s);
 }
 
+int player::getState(){
+    return state;
+}
+
 // Update position and sprite based on state variable
 void player::act(){
     // Move the sprite
@@ -51,6 +55,17 @@ void player::act(){
     
 }
 
-int player::getState(){
-    return state;
+
+void player::draw(SDL_Renderer* ren){
+    //Create texture from sprite surface, and create the rect to render onto
+	SDL_Texture* txtr = SDL_CreateTextureFromSurface(ren, spr.img);
+	SDL_Rect dstRect = {getX(), getY(), spr.rect.w, spr.rect.h};
+	//If facing left, flip the render
+	if(getFace()){
+		SDL_RenderCopyEx(ren, txtr, &spr.rect, &dstRect, 0, 0, SDL_FLIP_HORIZONTAL);
+	}
+	//Otherwise, render normally
+	else{
+		SDL_RenderCopy(ren, txtr, &spr.rect, &dstRect);
+	}
 }

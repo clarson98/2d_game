@@ -64,3 +64,12 @@ void entity::sprDefault(){
     spr.rect.x = 0;
     spr.rect.y = 0;
 }
+
+void entity::draw(SDL_Renderer* ren){
+    //Create texture from sprite surface, and create the rect to render onto
+	SDL_Texture* txtr = SDL_CreateTextureFromSurface(ren, spr.img);
+	SDL_Rect dstRect = {getX(), getY(), spr.rect.w, spr.rect.h};
+	//render
+	SDL_RenderCopy(ren, txtr, &spr.rect, &dstRect);
+	
+}

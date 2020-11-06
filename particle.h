@@ -10,7 +10,7 @@ class particle{
         ~particle();
 
         void update();
-        void draw();
+        void draw(SDL_Renderer* ren);
 
     private:
         int x, y;

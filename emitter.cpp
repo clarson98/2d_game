@@ -4,7 +4,7 @@ emitter::emitter(){
 
 }
 
-void emitter::draw(){
+void emitter::draw(SDL_Renderer* ren){
 
 }
 

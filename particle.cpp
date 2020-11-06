@@ -17,3 +17,7 @@ void particle::update(){
     y += vy;
     lifetime--;
 }
+
+void particle::draw(SDL_Renderer* ren){
+    
+}

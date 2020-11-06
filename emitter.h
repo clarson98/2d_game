@@ -9,7 +9,7 @@ class emitter{
         emitter();
         ~emitter();
         void update();
-        void draw();
+        void draw(SDL_Renderer* ren);
 
     private:
 

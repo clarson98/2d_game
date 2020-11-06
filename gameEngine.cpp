@@ -6,6 +6,8 @@ gameEngine::gameEngine(){
 	my_SDL_init();
 	//Create player
 	player p;
+	idleObject* torch = new idleObject("Torch.png", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+	objs.push_back(*torch);
 	//Set timer
 	timer = SDL_GetTicks();
 }
@@ -65,17 +67,9 @@ void gameEngine::my_SDL_init(){
 void gameEngine::render(){
 	//Clear the renderer
 	SDL_RenderClear(my_renderer);
-	
-	//Create texture from sprite surface, and create the rect to render onto
-	SDL_Texture* txtr = SDL_CreateTextureFromSurface(my_renderer, p.spr.img);
-	SDL_Rect dstRect = {p.getX(), p.getY(), p.spr.rect.w, p.spr.rect.h};
-	//If facing left, flip the render
-	if(p.getFace()){
-		SDL_RenderCopyEx(my_renderer, txtr, &p.spr.rect, &dstRect, 0, 0, SDL_FLIP_HORIZONTAL);
-	}
-	//Otherwise, render normally
-	else{
-		SDL_RenderCopy(my_renderer, txtr, &p.spr.rect, &dstRect);
+	p.draw(my_renderer);
+	for(auto i = objs.begin(); i < objs.end(); i++){
+		i->draw(my_renderer);
 	}
 	// Limit speed
 	Uint32 duration = SDL_GetTicks() - timer;
@@ -91,6 +85,9 @@ void gameEngine::render(){
 //Currently, just moves the player and calls animation based on state
 void gameEngine::updateMechanics(){
 	p.act();
+	for(auto i = objs.begin(); i < objs.end(); i++){
+		i->spr.anim(0);
+	}
 }
 
 //Handle keyboard input from user
