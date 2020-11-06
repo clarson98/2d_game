@@ -6,7 +6,7 @@
 class particle{
     public:
         particle();
-        particle(int, int, double, double, int);
+        particle(int, int, double, double, int, int, int, int);
         ~particle();
 
         void update();
@@ -16,6 +16,11 @@ class particle{
         int x, y;
         double vx, vy;
         int lifetime;
+        int w, h;
+        int type;
+
+        SDL_Surface *img;
+        SDL_Rect rect;
 
 
 };

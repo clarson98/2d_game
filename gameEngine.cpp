@@ -6,7 +6,7 @@ gameEngine::gameEngine(){
 	my_SDL_init();
 	//Create player
 	player p;
-	idleObject* torch = new idleObject("Torch.png", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+	idleObject* torch = new idleObject("Torch.png", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, "Ember.png", SCREEN_WIDTH / 2 + 5, SCREEN_HEIGHT / 2 + 5, 4, 4, 0);
 	objs.push_back(*torch);
 	//Set timer
 	timer = SDL_GetTicks();
