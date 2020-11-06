@@ -79,7 +79,9 @@ void gameEngine::render(){
 	}
 	// Limit speed
 	Uint32 duration = SDL_GetTicks() - timer;
-	if (duration < 1000 / 60) {
+	
+	if (duration < 1000.0 / 60.0) {
+		timer = SDL_GetTicks();
 		SDL_Delay(1000 / 60 - duration);
 	}
 	SDL_RenderPresent(my_renderer);
@@ -129,5 +131,42 @@ void gameEngine::handleUI(SDL_Event input){
 					p.setState(3);
 					break;
 			}
+			break;
+		case SDL_KEYUP:
+			switch(input.key.keysym.sym){				//W key hit, move up
+				case SDLK_w:
+					if(p.getState() == 1){
+						p.setState(4);
+					}
+					break;
+				//A key hit, move left
+				case SDLK_a:
+					if(p.getState() == 2 && p.getFace() == true){
+						p.setState(4);
+						p.setFace(true);
+					}
+					break;
+				//S key hit, move down
+				case SDLK_s:
+					if(p.getState() == 0){
+						p.setState(4);
+					}
+					break;
+				//D key hit, move right
+				case SDLK_d:
+					if(p.getState() == 2 && p.getFace() == false){
+						p.setState(4);
+						p.setFace(false);
+					}
+					break;
+				//Space bar hit, fly animation
+				case SDLK_SPACE:
+					if(p.getState() == 3){
+						p.setState(4);
+					}
+					break;
+			}
+			break;
+		
 	}
 }

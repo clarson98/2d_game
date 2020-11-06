@@ -14,12 +14,14 @@ class player : public entity{
         ~player();
 
         void setState(int s);
+        int getState();
         void act();
 
         enum state_t {WALKING_DOWN, WALKING_UP, WALKING_SIDE, FLAP, IDLE};
 
     private:
         state_t state;
+        Uint32 lastUpdate; 
 };
 
 #endif
