@@ -14,24 +14,28 @@ particle::particle(int x, int y, double vx, double vy, int lifetime,  int w, int
     if(type == 0){
         img = IMG_Load("Ember.png");
 
-        rect.x = x;
-        rect.y = y;
-        rect.w = 4;
-        rect.h = 4;
+        rect.x = 0;
+        rect.y = 0;
+        rect.w = img->w;
+        rect.h = img->h;
     }
 }
 
 particle::~particle(){
-    
+
 }
 
 void particle::update(){
     x += vx;
     y += vy;
     lifetime--;
+    if(type == 0){
+        vy += 0.05;
+    }
 }
 
 void particle::draw(SDL_Renderer* ren){
+    //std::cout << " test" << std::endl;
     //Create texture from sprite surface, and create the rect to render onto
 	SDL_Texture* txtr = SDL_CreateTextureFromSurface(ren, img);
 	SDL_Rect dstRect = {x, y, w, h};

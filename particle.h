@@ -15,7 +15,7 @@ class particle{
         int getLife();
 
     private:
-        int x, y;
+        double x, y;
         double vx, vy;
         int lifetime;
         int w, h;

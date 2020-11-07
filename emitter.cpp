@@ -27,13 +27,13 @@ void emitter::draw(SDL_Renderer* ren){
 
 void emitter::update(){
     if(rand() % 30 == 0 && particles.size() < MAX_PARTS){
-        particle p(rand() % 9 + (-4), posY, rand() % 9 + (-4), rand() % 4, rand() % 60 + 30, 4, 4, type);
+        particle p(posX + (rand() % 9 + (-4)), posY, rand() % 5 + (-3), -rand() % 4 - 2, rand() % 45 + 15, 4, 4, type);
         particles.push_back(p);
     }
     for(int i = 0; i < particles.size(); i++){
         particles[i].update();
         if(particles[i].getLife() == 0){
-            //particles.erase(particles.begin() + i);
+            particles.erase(particles.begin() + i);
             //delete particles.at(i);
         }
     }

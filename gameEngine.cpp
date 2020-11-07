@@ -6,7 +6,7 @@ gameEngine::gameEngine(){
 	my_SDL_init();
 	//Create player
 	player p;
-	idleObject* torch = new idleObject("Torch.png", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, "Ember.png", SCREEN_WIDTH / 2 + 5, SCREEN_HEIGHT / 2 + 5, 4, 4, 0);
+	idleObject* torch = new idleObject("Torch.png", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, "Ember.png", SCREEN_WIDTH / 2 + 128, SCREEN_HEIGHT / 2 + 103, 4, 4, 0);
 	objs.push_back(*torch);
 	//Set timer
 	timer = SDL_GetTicks();
@@ -67,10 +67,11 @@ void gameEngine::my_SDL_init(){
 void gameEngine::render(){
 	//Clear the renderer
 	SDL_RenderClear(my_renderer);
-	p.draw(my_renderer);
+
 	for(auto i = objs.begin(); i < objs.end(); i++){
 		i->draw(my_renderer);
 	}
+	p.draw(my_renderer);
 	// Limit speed
 	Uint32 duration = SDL_GetTicks() - timer;
 	
