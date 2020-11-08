@@ -41,6 +41,7 @@ void particle::draw(SDL_Renderer* ren){
 	SDL_Rect dstRect = {x, y, w, h};
 	//render
 	SDL_RenderCopy(ren, txtr, &rect, &dstRect);
+    SDL_DestroyTexture(txtr);
 }
 
 int particle::getLife(){

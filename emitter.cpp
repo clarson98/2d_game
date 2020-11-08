@@ -18,6 +18,11 @@ emitter::emitter(const char *partPath, int part_x, int part_y, int w, int h, int
 
 }
 
+emitter::~emitter(){
+    particles.clear();
+    //delete this;
+}
+
 void emitter::draw(SDL_Renderer* ren){
     update();
     for(auto itr = particles.begin(); itr < particles.end(); itr++){

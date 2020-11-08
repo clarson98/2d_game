@@ -5,21 +5,22 @@ gameEngine::gameEngine(){
 	//Initialize SDL
 	my_SDL_init();
 	//Create player
-	player p;
+	//player p;
 	idleObject* torch = new idleObject("Torch.png", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, "Ember.png", SCREEN_WIDTH / 2 + 128, SCREEN_HEIGHT / 2 + 103, 4, 4, 0);
 	objs.push_back(*torch);
+	//delete torch;
 	//Set timer
 	timer = SDL_GetTicks();
 }
 
 //Destructor. Destroys SDL things
 gameEngine::~gameEngine(){
+	//objs.clear();
+  	SDL_DestroyRenderer(my_renderer);
+  	SDL_DestroyWindow(my_window);
 
-  SDL_DestroyRenderer(my_renderer);
-  SDL_DestroyWindow(my_window);
-
-  IMG_Quit();
-  SDL_Quit();
+  	IMG_Quit();
+  	SDL_Quit();
 }
 
 // Primary game loop

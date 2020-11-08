@@ -68,4 +68,5 @@ void player::draw(SDL_Renderer* ren){
 	else{
 		SDL_RenderCopy(ren, txtr, &spr.rect, &dstRect);
 	}
+    SDL_DestroyTexture(txtr);
 }

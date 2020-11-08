@@ -71,5 +71,5 @@ void entity::draw(SDL_Renderer* ren){
 	SDL_Rect dstRect = {getX(), getY(), spr.rect.w, spr.rect.h};
 	//render
 	SDL_RenderCopy(ren, txtr, &spr.rect, &dstRect);
-	
+	SDL_DestroyTexture(txtr);
 }

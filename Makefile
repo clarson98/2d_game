@@ -10,7 +10,7 @@ CFLAGS = `sdl2-config --libs --cflags` -ggdb3 -O0 -Wall -lSDL2_image -lm -std=c+
 HDRS = sprite.h player.h entity.h particle.h emitter.h idleObject.h gameEngine.h
 
 # add source files here
-SRCS = main.cpp sprite.cpp player.cpp entity.cpp particle.cpp emitter.cpp idleObject.cpp gameEngine.cpp
+SRCS = main.cpp sprite.cpp player.cpp entity.cpp particle.cpp idleObject.cpp emitter.cpp gameEngine.cpp
 
 # generate names of object files
 OBJS = $(SRCS:.cpp=.o)

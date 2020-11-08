@@ -9,7 +9,7 @@ idleObject::idleObject(char const *path, int x, int y, char const *partPath, int
 }
 
 idleObject::~idleObject(){
-
+	delete[] e;
 }
 
 void idleObject::draw(SDL_Renderer* ren){
@@ -19,5 +19,6 @@ void idleObject::draw(SDL_Renderer* ren){
 	//render
     e->draw(ren);
 	SDL_RenderCopy(ren, txtr, &spr.rect, &dstRect);
+	SDL_DestroyTexture(txtr);
 
 }
