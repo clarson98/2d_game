@@ -51,7 +51,7 @@ class gameEngine{
         SDL_Event input;
 
 		player* p;
-        vector<entity> objs;
+        vector<idleObject> objs;
 
         bool gameOver = false;
         Uint32 timer;

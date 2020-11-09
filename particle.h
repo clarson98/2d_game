@@ -6,7 +6,7 @@
 class particle{
     public:
         particle();
-        particle(int, int, double, double, int, int, int, int);
+        particle(int, int, double, double, int, int, int, int, SDL_Renderer*);
         ~particle();
 
         void update();
@@ -23,6 +23,7 @@ class particle{
 
         SDL_Surface *img;
         SDL_Rect rect;
+        SDL_Texture* txtr;
 
 
 };

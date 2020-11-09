@@ -9,7 +9,7 @@ idleObject::idleObject(char const *path, int x, int y, int w2, int h2, char cons
 }
 
 idleObject::~idleObject(){
-	delete[] e;
+	//delete[] e;
 }
 
 void idleObject::draw(SDL_Renderer* ren){

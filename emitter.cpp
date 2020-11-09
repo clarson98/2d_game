@@ -24,15 +24,15 @@ emitter::~emitter(){
 }
 
 void emitter::draw(SDL_Renderer* ren){
-    update();
+    update(ren);
     for(auto itr = particles.begin(); itr < particles.end(); itr++){
         itr->draw(ren);
     }
 }
 
-void emitter::update(){
+void emitter::update(SDL_Renderer* ren){
     if(rand() % 30 == 0 && particles.size() < MAX_PARTS){
-        particle p(posX + (rand() % 9 + (-4)), posY, rand() % 5 + (-3), -rand() % 4 - 2, rand() % 45 + 15, 4, 4, type);
+        particle p(posX + (rand() % 9 + (-4)), posY, rand() % 5 + (-3), -rand() % 4 - 2, rand() % 45 + 15, 4, 4, type, ren);
         particles.push_back(p);
     }
     for(unsigned int i = 0; i < particles.size(); i++){

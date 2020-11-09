@@ -10,7 +10,7 @@ particle::particle(){
     h = 0;
 }
 
-particle::particle(int x, int y, double vx, double vy, int lifetime,  int w, int h, int type) : x(x), y(y), vx(vx), vy(vy), lifetime(lifetime), w(w), h(h), type(type) {
+particle::particle(int x, int y, double vx, double vy, int lifetime,  int w, int h, int type, SDL_Renderer* ren) : x(x), y(y), vx(vx), vy(vy), lifetime(lifetime), w(w), h(h), type(type) {
     if(type == 0){
         img = IMG_Load("Ember.png");
 
@@ -19,6 +19,8 @@ particle::particle(int x, int y, double vx, double vy, int lifetime,  int w, int
         rect.w = img->w;
         rect.h = img->h;
     }
+    
+
 }
 
 particle::~particle(){
@@ -35,9 +37,8 @@ void particle::update(){
 }
 
 void particle::draw(SDL_Renderer* ren){
-    //std::cout << " test" << std::endl;
     //Create texture from sprite surface, and create the rect to render onto
-	SDL_Texture* txtr = SDL_CreateTextureFromSurface(ren, img);
+    txtr = SDL_CreateTextureFromSurface(ren, img);
 	SDL_Rect dstRect = {(int) x, (int) y, w, h};
 	//render
 	SDL_RenderCopy(ren, txtr, &rect, &dstRect);

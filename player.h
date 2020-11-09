@@ -22,7 +22,9 @@ class player : public entity{
         enum state_t {WALKING_DOWN, WALKING_UP, WALKING_SIDE, FLAP, IDLE, COLLIDED};
 
     private:
+        int colCount = 0;
         state_t state;
+        state_t lastState;
         Uint32 lastUpdate; 
 };
 

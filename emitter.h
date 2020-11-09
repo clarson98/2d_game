@@ -10,7 +10,7 @@ class emitter{
         emitter();
         emitter(const char *partPath, int part_x, int part_y, int w, int h, int type);
         ~emitter();
-        void update();
+        void update(SDL_Renderer* ren);
         void draw(SDL_Renderer* ren);
 
     private:
