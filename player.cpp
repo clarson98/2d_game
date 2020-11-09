@@ -27,10 +27,12 @@ int player::getState(){
 
 // Update position and sprite based on state variable
 void player::act(){
+    //If player is collided, react as such
     if(state == 5){
         if(colCount == 0){
             spr.rect.y = 1000;
         }
+        //Animate based on the direction the player was moving before the collision
         switch(lastState){
             case WALKING_DOWN:
                 if(colCount <= 1){
@@ -77,6 +79,7 @@ void player::act(){
             default:
                 break;
         }
+        //Release player from collided state
         if(SDL_GetTicks() - lastUpdate > 750){
             state = lastState;
             lastState = IDLE;

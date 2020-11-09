@@ -22,6 +22,7 @@ sprite::~sprite()
     SDL_FreeSurface(img);
 }
 
+//Update the sprite with movement
 void sprite::anim(int s){
     rect.x = s * 256;
     if(rect.y < 768){

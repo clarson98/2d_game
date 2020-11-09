@@ -73,7 +73,7 @@ void gameEngine::my_SDL_init(){
 void gameEngine::render(){
 	//Clear the renderer
 	SDL_RenderClear(my_renderer);
-
+	//Call draw functions
 	for(auto i = objs.begin(); i < objs.end(); i++){
 		i->draw(my_renderer);
 	}
@@ -89,7 +89,7 @@ void gameEngine::render(){
 
 }
 
-//Currently, just moves the player and calls animation based on state
+// Updates objects, checks for collisions, calls sprite changes
 void gameEngine::updateMechanics(){
 	p->act();
 	for(auto i = objs.begin(); i < objs.end(); i++){
@@ -263,6 +263,7 @@ bool gameEngine::checkCollision(entity& left, entity& right){
 				return true;
 		}
 	}
+	//Otherwise, circle-rectangle collision
 	else if(left.getRad() != 0 || right.getRad() != 0){
 		if(left.getRad() != 0){
 			return circleRectCol(left, right);

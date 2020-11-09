@@ -1,17 +1,20 @@
 #include "idleObject.h"
 
+//Creates an object that doesn't emit particles
 idleObject::idleObject(const char* path, int x, int y, int w, int h, SDL_Renderer* ren) : entity{path, x, y, w, h, ren} {
 
 }
 
+//Creates an object that emits particles
 idleObject::idleObject(char const *path, int x, int y, int w2, int h2, char const *partPath, int part_x, int part_y, int w, int h, int type, SDL_Renderer* ren) : entity{path, x, y, w2, h2, ren} {
     e = new emitter(partPath, part_x, part_y, w, h, type);
 }
 
 idleObject::~idleObject(){
-	//delete[] e;
+
 }
 
+//render the object
 void idleObject::draw(SDL_Renderer* ren){
     //Create texture from sprite surface, and create the rect to render onto
 

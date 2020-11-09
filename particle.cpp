@@ -1,5 +1,6 @@
 #include "particle.h"
 
+//Default constructor
 particle::particle(){
     x = 0;
     y = 0;
@@ -10,6 +11,7 @@ particle::particle(){
     h = 0;
 }
 
+//Create a particle with inputs
 particle::particle(int x, int y, double vx, double vy, int lifetime,  int w, int h, int type, SDL_Renderer* ren) : x(x), y(y), vx(vx), vy(vy), lifetime(lifetime), w(w), h(h), type(type) {
     if(type == 0){
         img = IMG_Load("Ember.png");
@@ -27,6 +29,7 @@ particle::~particle(){
 
 }
 
+//Update position of a particle
 void particle::update(){
     x += vx;
     y += vy;
