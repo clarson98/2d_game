@@ -5,7 +5,7 @@ player::player() : entity(){
 }
 
 // Default constructor for player, uses player sprite and set position to top left of window
-player::player(SDL_Renderer* ren) : entity{"Player.png", 0, 0, ren} {
+player::player(SDL_Renderer* ren) : entity{"Player.png", 0, 0, 128, 128, ren} {
     setState(4);
     lastUpdate = SDL_GetTicks();
 }
@@ -30,17 +30,25 @@ void player::act(){
     switch(state){
         case WALKING_DOWN:
             yPos += 4;
+            yTop += 4;
+            yBot += 4;
             break;
         case WALKING_SIDE:
             if(getFace()){
                 xPos -= 4;
+                xLeft -= 4;
+                xRight -= 4;
             }
             else{
+                xLeft += 4;
                 xPos += 4;
+                xRight += 4;
             }
             break;
         case WALKING_UP:
             yPos -= 4;
+            yTop -= 4;
+            yBot -= 4;
             break;
         default:
             break;

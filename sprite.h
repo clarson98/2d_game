@@ -21,7 +21,7 @@ public:
     ~sprite();
 
     void anim(int s);
-
+    static const int res = 256;
 
 
     SDL_Surface *img;
@@ -29,7 +29,7 @@ public:
     SDL_Texture* txtr;
 
 private:
-    static const int res = 256;
+
     
 };
 

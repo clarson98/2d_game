@@ -5,7 +5,7 @@ gameEngine::gameEngine(){
 	//Initialize SDL
 	my_SDL_init();
 	p = new player(my_renderer);
-	entity* torch = new idleObject("Torch.png", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, "Ember.png", SCREEN_WIDTH / 2 + 128, SCREEN_HEIGHT / 2 + 103, 4, 4, 0, my_renderer);
+	entity* torch = new idleObject("Torch.png", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 32, 64, "Ember.png", SCREEN_WIDTH / 2 + 128, SCREEN_HEIGHT / 2 + 103, 4, 4, 0, my_renderer);
 	objs.push_back(*torch);
 
 	//Set timer
@@ -175,9 +175,11 @@ void gameEngine::handleUI(SDL_Event input){
 }
 
 bool gameEngine::checkCollision(entity& left, entity& right){
-	if((left.getXPos() > right.getXPos() && left.getXPos() < right.getXRight())){
-		if(left.getYPos() > right.getYPos() && left.getYPos() < right.getYBot()){
-			cout << "collision detected" << endl;
+	cout << "\nleft " << left.getXPos() << " " << left.getXRight() << " " << left.getYTop();
+	cout << "\nright " << right.getXPos() << " " << right.getXLeft() << " " << right.getYTop();
+	if((left.getXLeft() > right.getXLeft() && left.getXLeft() < right.getXRight())){
+		if(left.getYTop() > right.getYTop() && left.getYTop() < right.getYBot()){
+			cout << SDL_GetTicks() << " collision detected" << endl;
 		}
 	}
 	return true;

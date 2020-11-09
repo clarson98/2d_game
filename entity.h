@@ -10,7 +10,7 @@
 class entity{
     public:
         entity();
-        entity(char const *path, int x, int y, SDL_Renderer*);
+        entity(char const *path, int x, int y, int w, int h, SDL_Renderer*);
         ~entity();
 
 
@@ -28,11 +28,15 @@ class entity{
         int getYPos();
         int getXRight();
         int getYBot();
+        int getXLeft();
+        int getYTop();
 
     protected:
         SDL_Texture* txtr;
         int xPos;
         int yPos;
+        int xLeft;
+        int yTop;
         int xRight;
         int yBot;
     private:
