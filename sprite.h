@@ -26,6 +26,7 @@ public:
 
     SDL_Surface *img;
     SDL_Rect rect;
+    SDL_Texture* txtr;
 
 private:
     static const int res = 256;

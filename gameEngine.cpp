@@ -4,7 +4,8 @@
 gameEngine::gameEngine(){
 	//Initialize SDL
 	my_SDL_init();
-	entity* torch = new idleObject("Torch.png", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, "Ember.png", SCREEN_WIDTH / 2 + 128, SCREEN_HEIGHT / 2 + 103, 4, 4, 0);
+	p = new player(my_renderer);
+	entity* torch = new idleObject("Torch.png", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, "Ember.png", SCREEN_WIDTH / 2 + 128, SCREEN_HEIGHT / 2 + 103, 4, 4, 0, my_renderer);
 	objs.push_back(*torch);
 
 	//Set timer
@@ -33,7 +34,7 @@ void gameEngine::gameLoop(){
 		}
 		//If no input, reset sprite to default
 		else{
-			p.setState(4);
+			p->setState(4);
 		}
 		//Update mechanics
 		updateMechanics();
@@ -70,7 +71,7 @@ void gameEngine::render(){
 	for(auto i = objs.begin(); i < objs.end(); i++){
 		i->draw(my_renderer);
 	}
-	p.draw(my_renderer);
+	p->draw(my_renderer);
 	// Limit speed
 	Uint32 duration = SDL_GetTicks() - timer;
 	
@@ -84,12 +85,13 @@ void gameEngine::render(){
 
 //Currently, just moves the player and calls animation based on state
 void gameEngine::updateMechanics(){
-	p.act();
+	p->act();
 	for(auto i = objs.begin(); i < objs.end(); i++){
 		i->spr.anim(0);
 	}
 	for(auto i = objs.begin(); i < objs.end(); i++){
-		bool x = checkCollision(p, *i);
+	
+		bool x = checkCollision(*p, *i);
 	}
 }
 
@@ -110,59 +112,60 @@ void gameEngine::handleUI(SDL_Event input){
 				//Walking state
 				//W key hit, move up
 				case SDLK_w:
-					p.setState(1);
+					p->setState(1);
 					break;
 				//A key hit, move left
 				case SDLK_a:
-					p.setState(2);
-					p.setFace(true);
+					p->setState(2);
+					p->setFace(true);
 					break;
 				//S key hit, move down
 				case SDLK_s:
-					p.setState(0);
+					p->setState(0);
 					break;
 				//D key hit, move right
 				case SDLK_d:
-					p.setState(2);
-					p.setFace(false);
+					p->setState(2);
+					p->setFace(false);
 					break;
 				//Space bar hit, fly animation
 				case SDLK_SPACE:
-					p.setState(3);
+					p->setState(3);
 					break;
 			}
 			break;
 		case SDL_KEYUP:
-			switch(input.key.keysym.sym){				//W key hit, move up
+			switch(input.key.keysym.sym){				
+				//W key released, stop moving up
 				case SDLK_w:
-					if(p.getState() == 1){
-						p.setState(4);
+					if(p->getState() == 1){
+						p->setState(4);
 					}
 					break;
 				//A key released, stop moving left
 				case SDLK_a:
-					if(p.getState() == 2 && p.getFace() == true){
-						p.setState(4);
-						p.setFace(true);
+					if(p->getState() == 2 && p->getFace() == true){
+						p->setState(4);
+						p->setFace(true);
 					}
 					break;
 				//S key released, stop moving down
 				case SDLK_s:
-					if(p.getState() == 0){
-						p.setState(4);
+					if(p->getState() == 0){
+						p->setState(4);
 					}
 					break;
 				//D key released, stop moving right
 				case SDLK_d:
-					if(p.getState() == 2 && p.getFace() == false){
-						p.setState(4);
-						p.setFace(false);
+					if(p->getState() == 2 && p->getFace() == false){
+						p->setState(4);
+						p->setFace(false);
 					}
 					break;
 				//Space bar released, stop fly animation
 				case SDLK_SPACE:
-					if(p.getState() == 3){
-						p.setState(4);
+					if(p->getState() == 3){
+						p->setState(4);
 					}
 					break;
 			}
@@ -171,11 +174,11 @@ void gameEngine::handleUI(SDL_Event input){
 	}
 }
 
-bool gameEngine::checkCollision(entity left, entity right){
-	/*if((left.xPos > right.xPos && left.xPos < right.xRight)){
-		if(left.yPos > right.yPos && left.yPos < right.yBot){
+bool gameEngine::checkCollision(entity& left, entity& right){
+	if((left.getXPos() > right.getXPos() && left.getXPos() < right.getXRight())){
+		if(left.getYPos() > right.getYPos() && left.getYPos() < right.getYBot()){
 			cout << "collision detected" << endl;
 		}
-	}*/
+	}
 	return true;
 }

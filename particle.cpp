@@ -38,7 +38,7 @@ void particle::draw(SDL_Renderer* ren){
     //std::cout << " test" << std::endl;
     //Create texture from sprite surface, and create the rect to render onto
 	SDL_Texture* txtr = SDL_CreateTextureFromSurface(ren, img);
-	SDL_Rect dstRect = {x, y, w, h};
+	SDL_Rect dstRect = {(int) x, (int) y, w, h};
 	//render
 	SDL_RenderCopy(ren, txtr, &rect, &dstRect);
     SDL_DestroyTexture(txtr);

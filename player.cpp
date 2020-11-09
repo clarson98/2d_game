@@ -1,7 +1,11 @@
 #include "player.h" 
 
+player::player() : entity(){
+
+}
+
 // Default constructor for player, uses player sprite and set position to top left of window
-player::player() : entity{"Player.png", 0, 0} {
+player::player(SDL_Renderer* ren) : entity{"Player.png", 0, 0, ren} {
     setState(4);
     lastUpdate = SDL_GetTicks();
 }
@@ -58,8 +62,8 @@ void player::act(){
 
 void player::draw(SDL_Renderer* ren){
     //Create texture from sprite surface, and create the rect to render onto
-	SDL_Texture* txtr = SDL_CreateTextureFromSurface(ren, spr.img);
-	SDL_Rect dstRect = {getX(), getY(), spr.rect.w, spr.rect.h};
+
+	SDL_Rect dstRect = {getXPos(), getYPos(), spr.rect.w, spr.rect.h};
 	//If facing left, flip the render
 	if(getFace()){
 		SDL_RenderCopyEx(ren, txtr, &spr.rect, &dstRect, 0, 0, SDL_FLIP_HORIZONTAL);
@@ -68,5 +72,5 @@ void player::draw(SDL_Renderer* ren){
 	else{
 		SDL_RenderCopy(ren, txtr, &spr.rect, &dstRect);
 	}
-    SDL_DestroyTexture(txtr);
+
 }

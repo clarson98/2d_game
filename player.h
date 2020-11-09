@@ -11,6 +11,7 @@ class player : public entity{
 
     public:
         player();
+        player(SDL_Renderer*);
         ~player();
 
         void setState(int s);

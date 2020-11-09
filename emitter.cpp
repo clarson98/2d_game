@@ -35,7 +35,7 @@ void emitter::update(){
         particle p(posX + (rand() % 9 + (-4)), posY, rand() % 5 + (-3), -rand() % 4 - 2, rand() % 45 + 15, 4, 4, type);
         particles.push_back(p);
     }
-    for(int i = 0; i < particles.size(); i++){
+    for(unsigned int i = 0; i < particles.size(); i++){
         particles[i].update();
         if(particles[i].getLife() == 0){
             particles.erase(particles.begin() + i);

@@ -9,12 +9,11 @@
 
 class entity{
     public:
-        //entity();
-        entity(char const *path, int x, int y);
+        entity();
+        entity(char const *path, int x, int y, SDL_Renderer*);
         ~entity();
 
-        int getX();
-        int getY();
+
 
         sprite spr;
 
@@ -25,8 +24,13 @@ class entity{
         void sprDefault();
 
         void virtual draw(SDL_Renderer* ren);
+        int getXPos();
+        int getYPos();
+        int getXRight();
+        int getYBot();
 
-
+    protected:
+        SDL_Texture* txtr;
         int xPos;
         int yPos;
         int xRight;

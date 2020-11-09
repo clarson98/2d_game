@@ -15,7 +15,8 @@ class emitter{
 
     private:
         std::vector<particle>  particles;
-        int posX, posY, type, width, height, MAX_PARTS;
+        int posX, posY, type, width, height;
+        unsigned int MAX_PARTS;
 
 };
 
