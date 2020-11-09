@@ -5,8 +5,10 @@ gameEngine::gameEngine(){
 	//Initialize SDL
 	my_SDL_init();
 	p = new player(my_renderer);
-	entity* torch = new idleObject("Torch.png", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 32, 64, "Ember.png", SCREEN_WIDTH / 2 + 128, SCREEN_HEIGHT / 2 + 103, 4, 4, 0, my_renderer);
+	entity* torch = new idleObject("Torch.png", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 32, 96, "Ember.png", SCREEN_WIDTH / 2 + 128, SCREEN_HEIGHT / 2 + 103, 4, 4, 0, my_renderer);
 	objs.push_back(*torch);
+	//entity* p2 = new player(my_renderer);
+	//objs.push_back(*p2);
 
 	//Set timer
 	timer = SDL_GetTicks();
@@ -175,12 +177,104 @@ void gameEngine::handleUI(SDL_Event input){
 }
 
 bool gameEngine::checkCollision(entity& left, entity& right){
-	cout << "\nleft " << left.getXPos() << " " << left.getXRight() << " " << left.getYTop();
-	cout << "\nright " << right.getXPos() << " " << right.getXLeft() << " " << right.getYTop();
-	if((left.getXLeft() > right.getXLeft() && left.getXLeft() < right.getXRight())){
-		if(left.getYTop() > right.getYTop() && left.getYTop() < right.getYBot()){
-			cout << SDL_GetTicks() << " collision detected" << endl;
+	//cout << "\nleft " << left.getXPos() << " " << left.getXRight() << " " << left.getYTop();
+	//cout << "\nright " << right.getXPos() << " " << right.getXLeft() << " " << right.getYTop();
+	//Rectangular detection
+	if(left.getRad() == 0 && right.getRad() == 0){
+	//When left's left overlaps with right
+		if((left.getXLeft() > right.getXLeft() && left.getXLeft() < right.getXRight())){
+			if(left.getYTop() > right.getYTop() && left.getYTop() < right.getYBot()){
+				cout << SDL_GetTicks() << " collision detected" << endl;
+				return true;
+			}
+			else if(left.getYBot() > right.getYTop() && left.getYBot() < right.getYBot()){
+				cout << SDL_GetTicks() << " collision detected" << endl;
+				return true;
+			}
+			else if(left.getYTop() < right.getYTop() && left.getYBot() > right.getYBot()){
+				cout << SDL_GetTicks() << " collision detected" << endl;
+				return true;
+			}
+			else if(left.getYBot() < right.getYBot() && left.getYTop() > right.getYTop()){
+				cout << SDL_GetTicks() << " collision detected" << endl;
+				return true;
+			}		
+		}
+		//When left's right overlaps with right
+		if((left.getXRight() > right.getXLeft() && left.getXRight() < right.getXRight())){
+			if(left.getYTop() > right.getYTop() && left.getYTop() < right.getYBot()){
+				cout << SDL_GetTicks() << " collision detected" << endl;
+				return true;
+			}
+			else if(left.getYBot() > right.getYTop() && left.getYBot() < right.getYBot()){
+				cout << SDL_GetTicks() << " collision detected" << endl;
+				return true;
+			}
+			else if(left.getYTop() < right.getYTop() && left.getYBot() > right.getYBot()){
+				cout << SDL_GetTicks() << " collision detected" << endl;
+				return true;
+			}
+			else if(left.getYBot() < right.getYBot() && left.getYTop() > right.getYTop()){
+				cout << SDL_GetTicks() << " collision detected" << endl;
+				return true;
+			}	
+		}
+		//When left's left and right are outside of right's left and right (left has larger width)
+		if((left.getXLeft() < right.getXLeft() && left.getXRight() > right.getXRight())){
+			if(left.getYTop() > right.getYTop() && left.getYTop() < right.getYBot()){
+				cout << SDL_GetTicks() << " collision detected" << endl;
+				return true;
+			}
+			else if(left.getYBot() > right.getYTop() && left.getYBot() < right.getYBot()){
+				cout << SDL_GetTicks() << " collision detected" << endl;
+				return true;
+			}
+			else if(left.getYTop() < right.getYTop() && left.getYBot() > right.getYBot()){
+				cout << SDL_GetTicks() << " collision detected" << endl;
+				return true;
+			}
+			else if(left.getYBot() < right.getYBot() && left.getYTop() > right.getYTop()){
+				cout << SDL_GetTicks() << " collision detected" << endl;
+				return true;
+			}	
+		}
+		//When left's left and right are inside of right's left and right (left has smaller width)
+		if((left.getXLeft() > right.getXLeft() && left.getXRight() < right.getXRight())){
+			if(left.getYTop() > right.getYTop() && left.getYTop() < right.getYBot()){
+				cout << SDL_GetTicks() << " collision detected" << endl;
+				return true;
+			}
+			else if(left.getYBot() > right.getYTop() && left.getYBot() < right.getYBot()){
+				cout << SDL_GetTicks() << " collision detected" << endl;
+				return true;
+			}
+			else if(left.getYTop() < right.getYTop() && left.getYBot() > right.getYBot()){
+				cout << SDL_GetTicks() << " collision detected" << endl;
+				return true;
+			}
+			else if(left.getYBot() < right.getYBot() && left.getYTop() > right.getYTop()){
+				cout << SDL_GetTicks() << " collision detected" << endl;
+				return true;
+			}	
 		}
 	}
-	return true;
+	//Both circular detection
+	else if(left.getRad() != 0 && right.getRad() != 0){
+		//Get center points of each circle
+		double leftCX = (left.getXLeft() + left.getXRight()) / 2;
+		double leftCY = (left.getYTop() + left.getYBot()) / 2;
+		double rightCX = (right.getXLeft() + right.getXRight()) / 2;
+		double rightCY = (right.getYTop() + right.getYBot()) / 2;
+		//Calculate distance between the two centers
+		double dx = leftCX - rightCX;
+		double dy = leftCY - rightCY;
+		double distance = sqrt(pow(dx, 2) + pow(dy, 2));
+		//Check for overlap
+		if(distance < left.getRad() + right.getRad()){
+			cout << SDL_GetTicks() << " collision detected" << endl;
+			return true;
+		}
+	}
+
+	return false;
 }

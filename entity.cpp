@@ -104,3 +104,7 @@ int entity::getXLeft(){
 int entity::getYTop(){
     return yTop;
 }
+
+int entity::getRad(){
+    return rad;
+}

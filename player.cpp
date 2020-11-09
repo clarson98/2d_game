@@ -5,9 +5,10 @@ player::player() : entity(){
 }
 
 // Default constructor for player, uses player sprite and set position to top left of window
-player::player(SDL_Renderer* ren) : entity{"Player.png", 0, 0, 128, 128, ren} {
+player::player(SDL_Renderer* ren) : entity{"Player.png", 0, 0, 128, 144, ren} {
     setState(4);
     lastUpdate = SDL_GetTicks();
+    rad = 64;
 }
 
 // Destructor

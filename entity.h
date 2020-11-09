@@ -30,6 +30,7 @@ class entity{
         int getYBot();
         int getXLeft();
         int getYTop();
+        int getRad();
 
     protected:
         SDL_Texture* txtr;
@@ -39,6 +40,7 @@ class entity{
         int yTop;
         int xRight;
         int yBot;
+        int rad = 0;
     private:
         bool face = false;
 };
