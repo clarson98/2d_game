@@ -39,6 +39,7 @@ class gameEngine{
 		void render();
 		void handleUI(SDL_Event);
 		void updateMechanics();
+        bool checkCollision(entity, entity);
 
         //Screen dimension
         const int SCREEN_WIDTH = 1280;
@@ -49,7 +50,7 @@ class gameEngine{
         SDL_Event input;
 
 		player p;
-        vector<idleObject> objs;
+        vector<entity> objs;
 
         bool gameOver = false;
         Uint32 timer;

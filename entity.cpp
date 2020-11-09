@@ -5,6 +5,8 @@
 entity::entity(char const *path, int x, int y) : spr{path}{
     xPos = x;
     yPos = y;
+    xRight = x + 256;
+    yBot = y + 256;
 }
 
 //Destructor

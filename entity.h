@@ -18,7 +18,6 @@ class entity{
 
         sprite spr;
 
-
         void attack();
         void move(int);
         bool getFace();
@@ -27,10 +26,11 @@ class entity{
 
         void virtual draw(SDL_Renderer* ren);
 
-    protected:
+
         int xPos;
         int yPos;
-
+        int xRight;
+        int yBot;
     private:
         bool face = false;
 };

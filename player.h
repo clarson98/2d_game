@@ -18,7 +18,7 @@ class player : public entity{
         void act();
         void draw(SDL_Renderer* ren);
 
-        enum state_t {WALKING_DOWN, WALKING_UP, WALKING_SIDE, FLAP, IDLE};
+        enum state_t {WALKING_DOWN, WALKING_UP, WALKING_SIDE, FLAP, IDLE, COLLIDED};
 
     private:
         state_t state;

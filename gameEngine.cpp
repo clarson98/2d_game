@@ -4,11 +4,9 @@
 gameEngine::gameEngine(){
 	//Initialize SDL
 	my_SDL_init();
-	//Create player
-	//player p;
-	idleObject* torch = new idleObject("Torch.png", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, "Ember.png", SCREEN_WIDTH / 2 + 128, SCREEN_HEIGHT / 2 + 103, 4, 4, 0);
+	entity* torch = new idleObject("Torch.png", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, "Ember.png", SCREEN_WIDTH / 2 + 128, SCREEN_HEIGHT / 2 + 103, 4, 4, 0);
 	objs.push_back(*torch);
-	//delete torch;
+
 	//Set timer
 	timer = SDL_GetTicks();
 }
@@ -90,6 +88,9 @@ void gameEngine::updateMechanics(){
 	for(auto i = objs.begin(); i < objs.end(); i++){
 		i->spr.anim(0);
 	}
+	for(auto i = objs.begin(); i < objs.end(); i++){
+		bool x = checkCollision(p, *i);
+	}
 }
 
 //Handle keyboard input from user
@@ -138,27 +139,27 @@ void gameEngine::handleUI(SDL_Event input){
 						p.setState(4);
 					}
 					break;
-				//A key hit, move left
+				//A key released, stop moving left
 				case SDLK_a:
 					if(p.getState() == 2 && p.getFace() == true){
 						p.setState(4);
 						p.setFace(true);
 					}
 					break;
-				//S key hit, move down
+				//S key released, stop moving down
 				case SDLK_s:
 					if(p.getState() == 0){
 						p.setState(4);
 					}
 					break;
-				//D key hit, move right
+				//D key released, stop moving right
 				case SDLK_d:
 					if(p.getState() == 2 && p.getFace() == false){
 						p.setState(4);
 						p.setFace(false);
 					}
 					break;
-				//Space bar hit, fly animation
+				//Space bar released, stop fly animation
 				case SDLK_SPACE:
 					if(p.getState() == 3){
 						p.setState(4);
@@ -168,4 +169,13 @@ void gameEngine::handleUI(SDL_Event input){
 			break;
 		
 	}
+}
+
+bool gameEngine::checkCollision(entity left, entity right){
+	/*if((left.xPos > right.xPos && left.xPos < right.xRight)){
+		if(left.yPos > right.yPos && left.yPos < right.yBot){
+			cout << "collision detected" << endl;
+		}
+	}*/
+	return true;
 }
