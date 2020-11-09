@@ -40,6 +40,7 @@ class gameEngine{
 		void handleUI(SDL_Event);
 		void updateMechanics();
         bool checkCollision(entity&, entity&);
+        bool circleRectCol(entity&, entity&);
 
         //Screen dimension
         const int SCREEN_WIDTH = 1280;

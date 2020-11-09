@@ -275,6 +275,45 @@ bool gameEngine::checkCollision(entity& left, entity& right){
 			return true;
 		}
 	}
+	else if(left.getRad() != 0 || right.getRad() != 0){
+		if(left.getRad() != 0){
+			return circleRectCol(left, right);
+		}
+		else{
+			return circleRectCol(right, left);
+		}
+	}
 
+	return false;
+}
+
+bool gameEngine::circleRectCol(entity& circ, entity& rect){
+	double testX = (circ.getXLeft() + circ.getXRight()) / 2;
+	double testY = (circ.getYTop() + circ.getYBot()) / 2;
+
+	//Determine which edge of the rectangle is closest to the circle
+	if(testX < rect.getXLeft()){
+		testX = rect.getXLeft();
+	}
+	else if(testX > rect.getXRight()){
+		testX = rect.getXRight();
+	}
+	if(testY < rect.getYTop()){
+		testY = rect.getYTop();
+	}
+	else if(testY > rect.getYBot()){
+		testY = rect.getYBot();
+	}
+
+	//Determine distance from center of circle to edge
+	double dx = ((circ.getXLeft() + circ.getXRight()) / 2) - testX;
+	double dy = ((circ.getYTop() + circ.getYBot()) / 2) - testY;
+	double dist = sqrt(pow(dx, 2) + pow(dy, 2));
+
+	//If radius is less than distance, there is a collison
+	if(dist < circ.getRad()){
+		cout << SDL_GetTicks() << " collision detected" << endl;
+		return true;
+	}
 	return false;
 }
